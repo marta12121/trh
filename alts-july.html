@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <label><textarea id="txt-area" cols="60" rows="30" placeholder="Alts:
+One by one with missing 1 line, but without any spaces. 
+For ex:
+1 Grown Up Bedroom with Pink Bed
+        
+2 Bedroom with Pinks Walls and Bright Accents
+        
+3 Chick Pink and Gray Designer Bedroom
+        
+4 Simple Salmon Pink Bedroom Design
+        
+5 Blush Pink Bedroom Idea
+..."></textarea></label>
+    <label><textarea id="source-area" cols="60" rows="30" placeholder="Links: 
+The first line link and and from the new line account's name. One by one without missing lines or spaces. For ex:
+https://www.instagram.com/p/CZrBl8kNld6/
+delightfulll
+https://www.instagram.com/p/CapfH_aAFHG/
+annelismitham
+...."></textarea></label>
+
+    <button id="btn" class="do_alts_btn">Do Image Names</button>
+    <br>
+    <script>
+        document.getElementById("btn").onclick = function() {
+                var text = document.getElementById("txt-area").value.split("\n");
+                var source = document.getElementById("source-area").value.split("\n");
+                var arrayLength = text.length;
+                var arrayLength1 = source.length;
+
+                function chunkArray(myArray, chunk_size) {
+                    var index = 0;
+                    var tempArray = [];
+
+                    for (index = 0; index < arrayLength; index += 2) {
+                        myChunk = myArray.slice(index, index + 2);
+                        tempArray.push(myChunk);
+                    }
+                    return tempArray;
+                }
+
+                function chunkArray1(myArray1, chunk_size) {
+                    var index1 = 0;
+                    var tempArray1 = [];
+
+                    for (index1 = 0; index1 < arrayLength1; index1 += 2) {
+                        myChunk1 = myArray1.slice(index1, index1 + 2);
+                        tempArray1.push(myChunk1);
+                    }
+                    return tempArray1;
+                }
+                for (let x = 0; x < text.length; x = x + 2) {
+                    if (x < 17) {
+                        caption = `${text[x].toLowerCase().replace(/\./g, "").replace(/'/g, "").replace(/,/g, "").replace(/!/g, "").replace(/`/g, "").replace(/  /g, " ").split(" ").join("-")}-${source[x].substr(30).replace(/\//g, "")}`;
+                    } else if (x >= 18) {
+                        caption = `${text[x].toLowerCase().replace(/\./g, "").replace(/'/g, "").replace(/,/g, "").replace(/!/g, "").replace(/`/g, "").replace(/  /g, " ").split(" ").join("-")}-${source[x].substr(31).replace(/\//g, "")}`;
+                    }
+                    document.body.innerHTML += `<br>`;
+                    document.body.innerText += caption;
+                    document.body.innerHTML += `<br>`;
+                }
+            }
+    </script>
+</body>
+
+</html>
